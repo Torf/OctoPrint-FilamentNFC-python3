@@ -216,11 +216,18 @@ class MFRC522:
     def __init__(self, dev=0, spd=1000000, bus=0):
         spi.open(dev,bus)
         spi.max_speed_hz = spd
-        mode = GPIO.getmode()     # read the mode into variable
-        print(mode)
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.NRSTPD, GPIO.OUT)
-        GPIO.output(self.NRSTPD, 1)
+
+        if GPIO.getmode() == -1:
+            print("No mode: set BOARD by default")
+            GPIO.setmode(GPIO.BOARD)
+
+        pin_or_gpio = self.NRSTPD
+        if GPIO.getmode() == GPIO.BCM:
+            print("BCM mode: translate pin to gpio")
+            pin_or_gpio = 6
+        
+        GPIO.setup(pin_or_gpio, GPIO.OUT)
+        GPIO.output(pin_or_gpio, 1)
         self.status = self.MFRC522_Init()
 #******************************************************************************************
     def mifareCardSelect(self, SAK):     # See AN10834 "MIFARE ISO/IEC 14443 PICC Selection"
@@ -558,7 +565,10 @@ class MFRC522:
             i = i+1
 #******************************************************************************************
     def MFRC522_Init(self):
-        GPIO.output(self.NRSTPD, 1)
+        pin_or_gpio = self.NRSTPD
+        if GPIO.getmode() == GPIO.BCM:
+            pin_or_gpio = 6
+        GPIO.output(pin_or_gpio, 1)
         self.MFRC522_Reset();
         self.Write_MFRC522(self.TModeReg,      0x8D)
         self.Write_MFRC522(self.TPrescalerReg, 0x3E)
