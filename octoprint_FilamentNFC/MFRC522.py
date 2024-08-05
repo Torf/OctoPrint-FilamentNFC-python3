@@ -216,7 +216,8 @@ class MFRC522:
     def __init__(self, dev=0, spd=1000000, bus=0):
         spi.open(dev,bus)
         spi.max_speed_hz = spd
-        GPIO.cleanup()
+        mode = GPIO.getmode()     # read the mode into variable
+        print(mode)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.NRSTPD, GPIO.OUT)
         GPIO.output(self.NRSTPD, 1)
