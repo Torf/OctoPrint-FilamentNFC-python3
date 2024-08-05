@@ -13,14 +13,14 @@
 #*******************************************************************************
 #***************************INCLIDE*********************************************
 #*******************************************************************************
-from .PlasticData import spool,material,colorStr
-from .MFRC522 import MFRC522
+from PlasticData import spool,material,colorStr
+from MFRC522 import MFRC522
 import RPi.GPIO as GPIO
 import signal
 import time
 import binascii
 import math
-from .crc8 import crc
+from crc8 import crc
 #*******************************************************************************
 #**************************CONSTANT*********************************************
 #*******************************************************************************
@@ -75,7 +75,7 @@ continue_reading = True
 #*******************************************************************************
 def end_read(signal,frame):
     global continue_reading
-    print("Ctrl+C captured, ending read.")
+    print "Ctrl+C captured, ending read."
     self.continue_reading = False
     GPIO.cleanup()
 #*******************************************************************************
@@ -130,16 +130,16 @@ class NFCmodule:
                 while i<12:
                     del data[15-i]
                     i=i+1
-            print("Sector "+str(x)+" "+str(data))
+            print "Sector "+str(x)+" "+str(data)
             x=x+1
         self.tag.MFRC522_StopCrypto1()
         return 1
 #******************************************************************************************
     def gr2mm(self,gr):
-        return gr/(self.spool.density * (math.pi*(self.spool.diameter/2)**2) * 0,0o01)
+        return gr/(self.spool.density * (math.pi*(self.spool.diameter/2)**2) * 0,001)
 #******************************************************************************************
     def mm2gr(self,mm):
-        return self.spool.density * (math.pi*(self.spool.diameter/2)**2) * mm * 0,0o01
+        return self.spool.density * (math.pi*(self.spool.diameter/2)**2) * mm * 0,001
 #******************************************************************************************
     def gr2mony(self,gr):
         return gr*self.spool.price/self.spool.weight
@@ -291,22 +291,22 @@ class NFCmodule:
             validData = 0
             #return 0
         if (self.DEBUG == 1):
-            print("uid        = " + str(hex(self.spool.uid)))
-            print("material   = " + material[self.spool.material])
-            print("color      = " + colorStr[self.spool.color])
-            print("weight     = " + str(self.spool.weight) + " gr")
-            print("balance    = " + str(self.spool.balance) + " gr")
-            print("diameter    = " + str(self.spool.diameter*0.01) + " mm")
-            print("price      = " + str(self.spool.price) + " rub")
-            print("vender     = " + str(self.spool.vender))
-            print("density    = " + str(self.spool.density*0.01) + " gr/cm^3")
-            print("extMinTemp = " + str(self.spool.extMinTemp) + " 'C")
-            print("extMaxTemp = " + str(self.spool.extMaxTemp) + " 'C")
-            print("bedMinTemp = " + str(self.spool.bedMinTemp) + " 'C")
-            print("bedMaxTemp = " + str(self.spool.bedMaxTemp) + " 'C")
-            print("hash calc  = " + str(hex(int(self.hashCalc.hexdigest(),16))))
-            print("hash read  = " + str(hex(self.hashRead)))
-            print("hash valid = " + str(validData))
+            print "uid        = " + str(hex(self.spool.uid))
+            print "material   = " + material[self.spool.material]
+            print "color      = " + colorStr[self.spool.color]
+            print "weight     = " + str(self.spool.weight) + " gr"
+            print "balance    = " + str(self.spool.balance) + " gr"
+            print "diameter    = " + str(self.spool.diameter*0.01) + " mm"
+            print "price      = " + str(self.spool.price) + " rub"
+            print "vender     = " + str(self.spool.vender)
+            print "density    = " + str(self.spool.density*0.01) + " gr/cm^3"
+            print "extMinTemp = " + str(self.spool.extMinTemp) + " 'C"
+            print "extMaxTemp = " + str(self.spool.extMaxTemp) + " 'C"
+            print "bedMinTemp = " + str(self.spool.bedMinTemp) + " 'C"
+            print "bedMaxTemp = " + str(self.spool.bedMaxTemp) + " 'C"
+            print "hash calc  = " + str(hex(int(self.hashCalc.hexdigest(),16)))
+            print "hash read  = " + str(hex(self.hashRead))
+            print "hash valid = " + str(validData)
 #******************************************************************************************
     def readSpoolClassic(self):
         data = []
@@ -370,22 +370,22 @@ class NFCmodule:
             return 0
         #********DEBUG******
         if (self.DEBUG == 1):
-            print("uid        = " + str(hex(self.spool.uid)))
-            print("material   = " + material[self.spool.material])
-            print("color      = " + colorStr[self.spool.color])
-            print("weight     = " + str(self.spool.weight) + " gr")
-            print("balance    = " + str(self.spool.balance) + " gr")
-            print("diameter    = " + str(self.spool.diameter*0.01) + " mm")
-            print("price      = " + str(self.spool.price) + " rub")
-            print("vender     = " + str(self.spool.vender))
-            print("density    = " + str(self.spool.density*0.01) + " gr/cm^3")
-            print("extMinTemp = " + str(self.spool.extMinTemp) + " 'C")
-            print("extMaxTemp = " + str(self.spool.extMaxTemp) + " 'C")
-            print("bedMinTemp = " + str(self.spool.bedMinTemp) + " 'C")
-            print("bedMaxTemp = " + str(self.spool.bedMaxTemp) + " 'C")
-            print("hash calc  = " + str(hex(int(self.hashCalc.hexdigest(),16))))
-            print("hash read  = " + str(hex(self.hashRead)))
-            print("hash valid = " + str(validData))
+            print "uid        = " + str(hex(self.spool.uid))
+            print "material   = " + material[self.spool.material]
+            print "color      = " + colorStr[self.spool.color]
+            print "weight     = " + str(self.spool.weight) + " gr"
+            print "balance    = " + str(self.spool.balance) + " gr"
+            print "diameter    = " + str(self.spool.diameter*0.01) + " mm"
+            print "price      = " + str(self.spool.price) + " rub"
+            print "vender     = " + str(self.spool.vender)
+            print "density    = " + str(self.spool.density*0.01) + " gr/cm^3"
+            print "extMinTemp = " + str(self.spool.extMinTemp) + " 'C"
+            print "extMaxTemp = " + str(self.spool.extMaxTemp) + " 'C"
+            print "bedMinTemp = " + str(self.spool.bedMinTemp) + " 'C"
+            print "bedMaxTemp = " + str(self.spool.bedMaxTemp) + " 'C"
+            print "hash calc  = " + str(hex(int(self.hashCalc.hexdigest(),16)))
+            print "hash read  = " + str(hex(self.hashRead))
+            print "hash valid = " + str(validData)
         #*******************
         return 1
 #******************************************************************************************
@@ -513,7 +513,7 @@ class NFCmodule:
         self.hashCalc.__init__()
         self.tag.MFRC522_Write(curBlock,outData)   # Write the data
         
-        print("DONE!")
+        print "DONE!"
 
 #******************************************************************************************
     def writeSpoolClassic(self):
@@ -581,7 +581,7 @@ class NFCmodule:
         self.tag.MFRC522_Write(self.blockNumber+2, outData) # Write the data
         self.tag.MFRC522_StopCrypto1()
         if (self.DEBUG == 1):
-            print("DONE")
+            print "DONE"
         return 1
 #*******************************************************************************
 #*******************************************************************************
@@ -591,16 +591,16 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, end_read)  # Hook the SIGINT
     GPIO.cleanup()
     NFC = NFCmodule()
-    print("*******************************************")
-    print("NFC test:")
-    print("*******************************************")
+    print "*******************************************"
+    print "NFC test:"
+    print "*******************************************"
     while(continue_reading):
         #NFC.readAll()
         NFC.writeSpool()
-        print("*******************************************")
+        print "*******************************************"
         time.sleep(1)
         NFC.readSpool()
-        print("*******************************************")
+        print "*******************************************"
         time.sleep(10)
 #*******************************************************************************
 #*******************************************************************************
