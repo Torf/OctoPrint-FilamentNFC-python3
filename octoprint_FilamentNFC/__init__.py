@@ -177,7 +177,7 @@ class FilamentnfcPlugin(octoprint.plugin.StartupPlugin,
                 repo="OctoPrint-Filamentnfc",
                 current=self._plugin_version,
                 # update method: pip
-                pip="https://github.com/photo-mickey/OctoPrint-Filamentnfc/archive/{target_version}.zip"
+                pip="https://github.com/Torf/OctoPrint-Filamentnfc-python3/archive/{target_version}.zip"
             )
         )
 __plugin_name__ = "FilamentNFC"

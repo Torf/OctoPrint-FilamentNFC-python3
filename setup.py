@@ -14,7 +14,7 @@ plugin_package = "octoprint_FilamentNFC"
 plugin_name = "OctoPrint-Filamentnfc"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = "0.2.0"
+plugin_version = "0.2.1"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
@@ -27,7 +27,7 @@ plugin_author = "Mike Mihailov"
 plugin_author_email = "photo.mickey@gmail.com"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/MikeMihailov/OctoPrint-Filamentnfc"
+plugin_url = "https://github.com/Torf/OctoPrint-Filamentnfc-python3"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
