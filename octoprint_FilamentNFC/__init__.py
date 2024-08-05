@@ -181,7 +181,7 @@ class FilamentnfcPlugin(octoprint.plugin.StartupPlugin,
             )
         )
 __plugin_name__ = "FilamentNFC"
-
+__plugin_pythoncompat__ = ">=3.7,<4"
 def __plugin_load__():
     global __plugin_implementation__
     __plugin_implementation__ = FilamentnfcPlugin()
